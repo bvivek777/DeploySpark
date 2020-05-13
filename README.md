@@ -1,0 +1,1 @@
+Use this repository to deploy spark clusters across multiple machines easily
