@@ -1,0 +1,84 @@
+{
+    "dev"  : {
+
+    },
+    "prod" : {
+        "slaves": [
+            {
+                "Authentication" : {
+                    "Identity" : "",
+                    "private_key" : {
+                        "file_path"  : "",
+                        "passphrase" : "",
+                        "encryption" : ""
+                    },
+                    "public_key" : "",
+                    "password" : ""
+                },
+                "port" : 22,
+                "user" : "vivek",
+                "host" : "localhost"
+            },
+            {
+                "Authentication" : {
+                    "Identity" : "",
+                    "private_key" : {
+                        "file_path"  : "",
+                        "passphrase" : "",
+                        "encryption" : ""
+                    },
+                    "public_key" : "",
+                    "password" : ""
+                },
+                "port" : 22,
+                "user" : "vivek",
+                "host" : "localhost"
+            },
+            {
+                "Authentication" : {
+                    "Identity" : "",
+                    "private_key" : {
+                        "file_path"  : "",
+                        "passphrase" : "",
+                        "encryption" : ""
+                    },
+                    "public_key" : "",
+                    "password" : ""
+                },
+                "port" : 22,
+                "user" : "vivek",
+                "host" : "localhost"
+            },
+            {
+                "Authentication" : {
+                    "Identity" : "",
+                    "private_key" : {
+                        "file_path"  : "",
+                        "passphrase" : "",
+                        "encryption" : ""
+                    },
+                    "public_key" : "",
+                    "password" : ""
+                },
+                "port" : 22,
+                "user" : "vivek",
+                "host" : "localhost"
+            }
+        ],
+        "master" : {
+            "Authentication" : {
+                "Identity" : "",
+                "private_key" : {
+                    "file_path"  : "",
+                    "passphrase" : "",
+                    "encryption" : ""
+                },
+                "public_key" : "",
+                "password" : ""
+            },
+            "port" : 22,
+            "user" : "vivek",
+            "host" : "localhost"
+        }
+    }
+}
