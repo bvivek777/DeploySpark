@@ -39,14 +39,14 @@ class Helper :
             print("Error installing "+component)
             return False
 
-    def __check_file( self, connection, path, directory ) -> str:
+    def __check_file( self, connection, path, directory ) -> str, bool:
         try :
             directory = directory.split("/")
             directory = directory[len(directory)-1]
-            connection.run("[[ ! -f "+path+directory+" ]] && error || echo 'True'")
-            return directory
+            connection.run("[[ -f "+path+directory+" ]] && echo 'true' || error")
+            return directory, True
         except :
-            return ""
+            return directory, False
 
     def download_and_install_tar( self, connection, component, os="ubuntu", install_path = ".", method="fs" ) -> bool:
         if ( not component in self.commands["Download"] ):
@@ -61,8 +61,8 @@ class Helper :
             if method == "fs" and component in self.commands["Upload"]:
                 print("Uploading Tar file") 
                 file_name = self.commands["Upload"][component]
-                proc_file = self.__check_file(connection, path, file_name)
-                if ( proc_file != "" ):
+                proc_file, status = self.__check_file(connection, path, file_name)
+                if ( status ):
                     print("File already exists")
                 else:
                     self.upload_file(connection, file_name, path)
@@ -105,15 +105,6 @@ class Helper :
             return
         res = self.__install_pkg(connection, component, os)
         return res and self.check_install(connection, component, os)
-    
-    # def install_tar( self, connection, component, os="ubuntu") -> bool: 
-    #     if ( not component in self.commands["Download"] ):
-    #         print(" Download link for "+component+" not found in commands.json")
-    #         return
-    #     if ( self.check_install(connection, component, os) ):
-    #         return
-    #     res = self.get_and_extract_tar(connection, component, os )
-    #     return res and self.check_install(connection, component, os)
 
     def upload_file(self, connection, upload, dest) -> bool :
         print("Uploading "+upload)

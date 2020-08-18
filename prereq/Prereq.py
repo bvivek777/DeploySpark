@@ -17,5 +17,6 @@ class Prereq :
         helper = Helper()
         helper.download_and_install_tar(connection, component="JAVA", os="ubuntu")
         helper.download_and_install_tar(connection, component="SPARK", os="ubuntu")
-        helper.install_package( connection, "python3", os )
-        helper.install_package( connection, "pip3", os )
+        helper.install_package(connection, "python3", os)
+        helper.install_package(connection, "pip3", os)
+        helper.install_package(connection, "psutil", os)

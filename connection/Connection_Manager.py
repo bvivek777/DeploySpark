@@ -44,7 +44,7 @@ class Connection_Manager :
     def start_deployment(self) :
         # install all the pre-requisites
         prereq = Prereq()
-        prereq.install_prereqs(connection=self.master_connection)
-        # for s in self.slave_connections :
-        #     prereq.install_prereqs(s)
+        # prereq.install_prereqs(connection=self.master_connection)
+        for s in self.slave_connections :
+            prereq.install_prereqs(s)
         
