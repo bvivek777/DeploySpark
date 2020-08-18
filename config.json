@@ -1,6 +1,39 @@
 {
     "dev"  : {
-
+        "slaves" : [
+            {
+                "Authentication" : {
+                    "Identity" : "",
+                    "private_key" : {
+                        "file_path"  : "",
+                        "passphrase" : "",
+                        "encryption" : ""
+                    },
+                    "public_key" : "",
+                    "password" : "password"
+                },
+                "sudo_pass" : "password",
+                "port" : 32769,
+                "user" : "root",
+                "host" : "localhost"
+            }
+        ],
+        "master" : {
+            "Authentication" : {
+                "Identity" : "",
+                "private_key" : {
+                    "file_path"  : "",
+                    "passphrase" : "",
+                    "encryption" : ""
+                },
+                "public_key" : "",
+                "password" : "password"
+            },
+            "port" : 32768,
+            "user" : "root",
+            "host" : "localhost", 
+            "sudo_pass":"password"
+        }
     },
     "prod" : {
         "slaves": [
@@ -13,7 +46,7 @@
                         "encryption" : ""
                     },
                     "public_key" : "",
-                    "password" : ""
+                    "password" : "password"
                 },
                 "port" : 22,
                 "user" : "vivek",

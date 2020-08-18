@@ -1,14 +1,32 @@
 {
     "ubuntu" : {
-        "java" : "sudo apt install openjdk-11-jdk",
-        "python3" : "sudo apt install python3",
-        "pip3" : "sudo apt install python3-pip",
-        "psutil" : "pip3 install psutil",
+        "package" : {
+            "JAVA" : "apt install openjdk-11-jdk",
+            "python3" : "apt install python3",
+            "pip3" : "apt install python3-pip",
+            "psutil" : "pip3 install psutil",
+            "wget" : "apt install wget"
+        },
+        "remove" : {
+            "JAVA" : "sudo apt remove openjdk-11-jdk",
+            "python3" : "sudo apt remove python3",
+            "pip3" : "sudo apt remove python3-pip",
+            "psutil" : "pip3 uninstall psutil"
+        },
         "check" : {
-            "java" : "java -version",
+            "JAVA" : "java -version",
             "python3" : "python3 -V",
             "pip3" : "pip3 -V",
-            "spark" : "cd ~/spark/opt/module"
+            "SPARK" : "cd /opt/spark-3.0.0-preview2-bin-hadoop2.7",
+            "wget" : "wget --version"
         }
+    },
+    "Download" : {
+        "SPARK" : "http://apache.mirrors.hoobly.com/spark/spark-3.0.0-preview2/spark-3.0.0-preview2-bin-hadoop2.7.tgz",
+        "JAVA"  : "https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz"
+    },
+    "Upload" : {
+        "SPARK" : "./install_packages/spark.tgz",
+        "JAVA"  : "./install_packages/openjdk-11.tar.gz"
     }
 }
