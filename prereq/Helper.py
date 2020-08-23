@@ -1,6 +1,5 @@
 import json
 import sys
-import traceback
 
 class Helper :
 
@@ -39,7 +38,7 @@ class Helper :
             print("Error installing "+component)
             return False
 
-    def __check_file( self, connection, path, directory ) -> str, bool:
+    def __check_file( self, connection, path, directory ):
         try :
             directory = directory.split("/")
             directory = directory[len(directory)-1]
@@ -79,20 +78,19 @@ class Helper :
             return True
         except :
             print("Error Installing "+component)
-            print(traceback.format_exc())
             return False
     
     def install_tar(self, connection, component, file_name, os, install_path=".") -> bool:
         print("Extracting and Installing "+component)
         path = "/opt/"
-        full_path = path+file_name
+        dir_name = file_name.split(".")[0]+"/"
+        full_path = path+dir_name
         try:
-            connection.run("cd "+path)
-            connection.run("tar xvf "+full_path+" -C "+install_path)
+            connection.run("cd "+path+" && mkdir "+dir_name+" && tar xf "+file_name+" -C "+dir_name+" --strip-components 1")
             connection.run("export "+component+"_HOME="+full_path)
-            connection.run("export PATH=$PATH:"+component+"_HOME/bin")
+            connection.run("export PATH=$PATH:$"+component+"_HOME/bin")
             connection.run("echo 'export "+component+"_HOME="+full_path+"' >> ~/.bashrc")
-            connection.run("echo 'export PATH=$PATH:"+component+"_HOME="+full_path+"' >> ~/.bashrc")
+            connection.run("echo 'export PATH=$PATH:$"+component+"_HOME/bin' >> ~/.bashrc")
             print("Installed "+component)
         except:
             print("Error extracting "+component)
