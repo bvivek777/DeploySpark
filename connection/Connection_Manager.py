@@ -44,7 +44,15 @@ class Connection_Manager :
     def start_deployment(self) :
         # install all the pre-requisites
         prereq = Prereq()
+        # config for loading configs
+        config = {}
+        config["base"] = "/root"
+        config["workers"] = ["172.17.0.4"]
         prereq.install_prereqs(connection=self.master_connection)
+        prereq.load_config(self.master_connection, config, True)
         for s in self.slave_connections :
             prereq.install_prereqs(s)
+            prereq.load_config(s, config)
+        # prereq.load_config(self.config)
+
         

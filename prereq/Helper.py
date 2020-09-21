@@ -3,9 +3,10 @@ import sys
 
 class Helper :
 
-    def __init__(self, mode=1):
+    def __init__(self, connection, mode=1):
         super().__init__()
         self.mode = 1
+        connection.run("apt-get update")
         with open("./commands.json") as install_commands :
             self.commands = json.load(install_commands)
 
@@ -38,14 +39,14 @@ class Helper :
             print("Error installing "+component)
             return False
 
-    def __check_file( self, connection, path, directory ):
+    def check_file( self, connection, path, file_name ):
         try :
-            directory = directory.split("/")
-            directory = directory[len(directory)-1]
-            connection.run("[[ -f "+path+directory+" ]] && echo 'true' || error")
-            return directory, True
-        except :
-            return directory, False
+            file_name = file_name.split("/")
+            file_name = file_name[len(file_name)-1]
+            connection.run("[[ -f "+path+file_name+" ]] && echo 'true' || error")
+            return file_name, True
+        except:
+            return file_name, False
 
     def download_and_install_tar( self, connection, component, os="ubuntu", install_path = ".", method="fs" ) -> bool:
         if ( not component in self.commands["Download"] ):
@@ -60,7 +61,7 @@ class Helper :
             if method == "fs" and component in self.commands["Upload"]:
                 print("Uploading Tar file") 
                 file_name = self.commands["Upload"][component]
-                proc_file, status = self.__check_file(connection, path, file_name)
+                proc_file, status = self.check_file(connection, path, file_name)
                 if ( status ):
                     print("File already exists")
                 else:

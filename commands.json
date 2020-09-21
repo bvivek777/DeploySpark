@@ -1,11 +1,12 @@
 {
     "ubuntu" : {
         "package" : {
-            "JAVA" : "apt install openjdk-11-jdk",
-            "python3" : "apt -y install python3",
-            "pip3" : "apt -y install python3-pip",
+            "JAVA" : "apt-get install openjdk-11-jdk",
+            "python3" : "apt-get -y install python3",
+            "pip3" : "apt-get -y install python3-pip",
             "psutil" : "pip3 install psutil",
-            "wget" : "apt -y install wget"
+            "wget" : "apt-get -y install wget",
+            "mysql": "pip3 install pymysql"
         },
         "remove" : {
             "JAVA" : "apt remove openjdk-11-jdk",
